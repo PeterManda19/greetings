@@ -1,4 +1,4 @@
-In index.html:
+<!-- In index.html:
   Add the following code to the head element:
     <link rel="stylesheet" href="greet.css">
 
@@ -14,5 +14,38 @@ In index.html:
       <button id="greetButton">Greet</button>
   
     Inside the container element, create a placeholder element for the greeting text, such as a span:
-      <span id="greetingText"></span>
-  
+      <span id="greetingText"></span> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greeting</title>
+    <link rel="stylesheet" href="greet.css">
+</head>
+<body>
+    <h1>Greeting</h1>
+    <div class="container">
+        <input type="text" id="nameInput" placeholder="Enter your name">
+        <div class="language-section">
+            <label><input type="radio" name="language" value="zulu" checked> IsiZulu</label>
+            <label><input type="radio" name="language" value="xhosa"> IsiXhosa</label>
+            <label><input type="radio" name="language" value="sepedi"> Sepedi</label>
+        </div>
+        <div class="button-section">
+            <button id="greetButton">Greet</button>
+        </div>
+        <div class="greeting-section">
+            <span id="greetingText"></span>
+        </div>
+        <div class="greet-count-section">
+            <span id="greetCountText"></span>
+        </div>
+    </div>
+    
+    <script src="greet.js"></script>
+    <script src="greet.dom.js"></script>
+
+</body>
+</html>

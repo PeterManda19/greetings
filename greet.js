@@ -1,16 +1,25 @@
-// Select elements using document.querySelector
-const inputElement = document.querySelector('input[type="text"]');
-const buttonElement = document.querySelector('button');
-const divElement = document.querySelector('div');
+//Write JavaScript code to capture the user's input from the text box when the button is pressed.
+// Define a factory function named createGreetMessage
+// This function will create and return an object with greet and getGreetCount methods
+// Initialize greetCount to 0
 
-// Event listener for button click
-buttonElement.addEventListener('click', function() {
-  // Get the value from the text box
-  const inputValue = inputElement.value;
+// Define a helper function to generate the appropriate greeting based on language
+// Use a switch statement to determine the greeting based on the language
+// If language selected is  'zulu'
+// Return a Zulu greeting with the provided name
+// If language selected is 'xhosa'
+// Return a Xhosa greeting with the provided name
+// If language selected is 'sepedi'
+// Return a Sepedi greeting with the provided name             
+// Return a default greeting with the provided name if no language is selected
+      
+// Define the greet method to generate a greeting and increment greetCount 
+// Generate the greeting using the generateGreeting helper function   
+// Increment greetCount by 1    
+// Return the generated greeting
 
-  // Clear the value in the text box
-  inputElement.value = "";
+// Define the getGreetCount method to return the current greetCount
+// Return the current value of greetCount
 
-  // Set the text in the div using innerHTML
-  divElement.innerHTML = "You entered: " + inputValue;
-});
+// Return an object with the greet and getGreetCount methods
+
