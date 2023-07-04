@@ -1,14 +1,16 @@
+// Create an instance of the greeting form using the factory function
+const greetingForm = createGreetMessage();
+
 // Select elements using document.querySelector
 const inputElement = document.querySelector('input[type="text"]');
 const buttonElement = document.querySelector('button');
 const divElement = document.querySelector('div');
 const languageRadios = document.querySelectorAll('input[type="radio"]');
 
-// Get the selected language
-const selectedLanguage = document.querySelector('input[name="language"]:checked').value;
-
-// Append the greeting element below the greet button
-// buttonElement.insertAdjacentElement('afterend', greetingElement);
+// Deselect all radio buttons initially
+for (const radio of languageRadios) {
+  radio.checked = false;
+}
 
 // Event listener for button click
 buttonElement.addEventListener('click', function() {
@@ -18,7 +20,7 @@ buttonElement.addEventListener('click', function() {
   // Clear the value in the text box
   inputElement.value = "";
 
-  
+  // Get the selected language from the radio buttons
   let selectedLanguage;
   for (const radio of languageRadios) {
     if (radio.checked) {
@@ -27,19 +29,29 @@ buttonElement.addEventListener('click', function() {
     }
   }
 
-  // Create the greeting based on the selected language
-  let greeting;
-  if (selectedLanguage === 'zulu') {
-    greeting = 'Sawubona, ' + inputValue;
-  } else if (selectedLanguage === 'xhosa') {
-    greeting = 'Molo, ' + inputValue + '!';
-  } else if (selectedLanguage === 'sepedi') {
-    greeting = 'Dumela, ' + inputValue + '!';
-  } else {
-    greeting = 'Hello, ' + inputValue;
+  // If no language is selected, use the default language from the factory function
+  if (!selectedLanguage) {
+    selectedLanguage = "default";
   }
 
-  // Set the text in the div using innerHTML
-  divElement.innerHTML = greeting;
-//   greetingElement.textContent = greeting;
+  // Create the greeting using the greet method from the greeting form instance
+  const greeting = greetingForm.greet(inputValue, selectedLanguage);
+
+  // Remove any existing greeting elements
+  const existingGreetingElements = document.querySelectorAll('.greeting');
+  for (const element of existingGreetingElements) {
+    element.remove();
+  }
+
+  // Create a new paragraph element for the greeting message
+  const greetingElement = document.createElement('p');
+  greetingElement.classList.add('greeting');
+  greetingElement.textContent = greeting;
+
+  // Append the greeting element below the greet button
+  divElement.appendChild(greetingElement);
+
+  // Clear the input field for the next name to be entered
+  inputElement.value = "";
+
 });

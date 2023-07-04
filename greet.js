@@ -23,3 +23,62 @@
 
 // Return an object with the greet and getGreetCount methods
 
+/**
+ * Factory function to create an object with greet and getGreetCount methods.
+ * @returns {Object} An object with greet and getGreetCount methods.
+ */
+function createGreetMessage() {
+  // Initialize greetCount to 0
+  let greetCount = 0;
+
+  /**
+   * Generates a greeting based on the provided name and language.
+   * @param {string} name - The name to include in the greeting.
+   * @param {string} language - The language for the greeting.
+   * @returns {string} The generated greeting.
+   */
+  function generateGreeting(name, language) {
+    switch (language) {
+      case 'zulu':
+        return `Sawubona, ${name}!`;
+      case 'xhosa':
+        return `Molo, ${name}!`;
+      case 'sepedi':
+        return `Dumela, ${name}!`;
+      default:
+        return `Hello, ${name}!`;
+    }
+  }
+
+  /**
+   * Generates a greeting, increments greetCount, and returns the greeting.
+   * @param {string} name - The name to include in the greeting.
+   * @param {string} language - The language for the greeting.
+   * @returns {string} The generated greeting.
+   */
+  function greet(name, language) {
+    // Generate the greeting using the generateGreeting function
+    const greeting = generateGreeting(name, language);
+    
+    // Increment greetCount by 1
+    greetCount++;
+    
+    // Return the generated greeting
+    return greeting;
+  }
+
+  /**
+   * Retrieves the current greetCount.
+   * @returns {number} The current value of greetCount.
+   */
+  function getGreetCount() {
+    // Return the current value of greetCount
+    return greetCount;
+  }
+
+  // Return an object with greet and getGreetCount methods
+  return {
+    greet: greet,
+    getGreetCount: getGreetCount
+  };
+}
