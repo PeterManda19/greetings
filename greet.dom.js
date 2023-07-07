@@ -54,4 +54,11 @@ buttonElement.addEventListener('click', function() {
   // Clear the input field for the next name to be entered
   inputElement.value = "";
 
+  // Update the greet count widgets
+  const greetCountElements = document.querySelectorAll('.greet-count-widget span');
+  for (const element of greetCountElements) {
+    const language = element.id.replace('CountText', '');
+    const count = greetingForm.getGreetCount(language);
+    element.textContent = `${element.textContent.split(':')[0]}: ${count}`;
+  }
 });

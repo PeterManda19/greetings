@@ -28,8 +28,15 @@
  * @returns {Object} An object with greet and getGreetCount methods.
  */
 function createGreetMessage() {
-  // Initialize greetCount to 0
-  let greetCount = 0;
+  // Initialize greetCounts for each language
+  let greetCounts = {
+    zulu: 0,
+    xhosa: 0,
+    sepedi: 0
+  };
+
+  // Initialize overall greetCount
+  let totalGreetCount = 0;
 
   /**
    * Generates a greeting based on the provided name and language.
@@ -60,22 +67,31 @@ function createGreetMessage() {
     // Generate the greeting using the generateGreeting function
     const greeting = generateGreeting(name, language);
     
-    // Increment greetCount by 1
-    greetCount++;
+    // Increment the greetCount for the specified language
+    greetCounts[language]++;
+
+    // Increment the overall greetCount
+    totalGreetCount++;
     
     // Return the generated greeting
     return greeting;
   }
 
   /**
-   * Retrieves the current greetCount.
-   * @returns {number} The current value of greetCount.
+   * Retrieves the greetCount for the specified language.
+   * If no language is provided, returns the total greetCount.
+   * @param {string} [language] - The language for which to retrieve the greetCount.
+   * @returns {number} The greetCount for the specified language or the total greetCount.
    */
-  function getGreetCount() {
-    // Return the current value of greetCount
-    return greetCount;
-  }
-
+  function getGreetCount(language) {
+    if (language) {
+      // Return the greetCount for the specified language
+      return greetCounts[language] || 0;
+    } 
+      // Return the total greetCount
+    return totalGreetCount;
+  } 
+  
   // Return an object with greet and getGreetCount methods
   return {
     greet: greet,
