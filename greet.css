@@ -20,8 +20,11 @@
       
     .container {
         /* Additional styles for container on tablets and larger screens */
-        float: left;
-        width: 50%; /* Adjust the width as needed */
+        float: none;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 }
   
@@ -47,7 +50,7 @@ button {
 .element {
     margin: 10px; /* Add space around elements */
     padding: 10px; /* Add internal spacing */
-    border: 1px solid #000; /* Add borders */
+    border: 10px solid #000; /* Add borders */
     display: flex;
     flex-direction: column;
 }
@@ -66,22 +69,31 @@ button {
   
 .greeting-section {
     margin-bottom: 10px;
+    border: 1px solid #000;
 }
   
 .greet-count-section {
     margin-bottom: 10px;
+    border: 1px solid #000;
 }  
+
+/* Define colors for sections */
+.greeting-section {
+    background-color: #4CAF50;
+}
+
+.greet-count-section {
+    background-color: #4CAF50;
+}
+
+.display-section {
+    background-color: #4CAF50;
+}
 
 /* Page layout using floats */
 .container {
-    float: left;
     width: 50%; /* Adjust the width as needed */
+    display: flex; /* Add flexbox display */
+    flex-direction: column; /* Arrange elements vertically */
+    align-items: center; /* Center align elements horizontally */
 }
-
-/* Page layout using CSS Grid */
-/*.container {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Adjust the column layout as needed */
-  /*  grid-gap: 10px; /* Add spacing between grid items */
-/*}*/
-  

@@ -1,4 +1,3 @@
-// Create an instance of the greeting form using the factory function
 const greetingForm = createGreetMessage();
 
 // Select elements using document.querySelector
@@ -37,28 +36,23 @@ buttonElement.addEventListener('click', function() {
   // Create the greeting using the greet method from the greeting form instance
   const greeting = greetingForm.greet(inputValue, selectedLanguage);
 
-  // Remove any existing greeting elements
-  const existingGreetingElements = document.querySelectorAll('.greeting');
-  for (const element of existingGreetingElements) {
-    element.remove();
-  }
-
-  // Create a new paragraph element for the greeting message
-  const greetingElement = document.createElement('p');
-  greetingElement.classList.add('greeting');
-  greetingElement.textContent = greeting;
-
-  // Append the greeting element below the greet button
-  divElement.appendChild(greetingElement);
+  // Set the greeting message as the content of the greeting display element
+  const greetingDisplay = document.getElementById('greetingDisplay');
+  greetingDisplay.textContent = greeting;
 
   // Clear the input field for the next name to be entered
   inputElement.value = "";
 
-  // Update the greet count widgets
+  // Update the greet count widget
   const greetCountElements = document.querySelectorAll('.greet-count-widget span');
   for (const element of greetCountElements) {
     const language = element.id.replace('CountText', '');
     const count = greetingForm.getGreetCount(language);
     element.textContent = `${element.textContent.split(':')[0]}: ${count}`;
   }
+
+  // Update the total greet count
+  const totalGreetCountElement = document.getElementById('totalGreetCountText');
+  const totalGreetCount = greetingForm.getTotalGreetCount();
+  totalGreetCountElement.textContent = `Total Greetings: ${totalGreetCount}`;
 });
