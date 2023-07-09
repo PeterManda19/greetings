@@ -6,6 +6,12 @@ const buttonElement = document.querySelector('button');
 const divElement = document.querySelector('div');
 const languageRadios = document.querySelectorAll('input[type="radio"]');
 
+// Check if greet count exists in localStorage
+const storedGreetCount = localStorage.getItem('greetCount');
+if (storedGreetCount) {
+  greetingForm.totalGreetCount = parseInt(storedGreetCount);
+}
+
 // Deselect all radio buttons initially
 for (const radio of languageRadios) {
   radio.checked = false;
@@ -55,4 +61,7 @@ buttonElement.addEventListener('click', function() {
   const totalGreetCountElement = document.getElementById('totalGreetCountText');
   const totalGreetCount = greetingForm.getTotalGreetCount();
   totalGreetCountElement.textContent = `Total Greetings: ${totalGreetCount}`;
+
+  // Store the greet count in localStorage
+  localStorage.setItem('greetCount', greetingForm.totalGreetCount.toString());
 });

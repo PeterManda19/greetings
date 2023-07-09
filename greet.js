@@ -62,6 +62,9 @@ function createGreetMessage() {
     
     // Increment the overall greetCount
     totalGreetCount++;
+
+    // Store the updated greetCount in localStorage
+    localStorage.setItem('greetCount', totalGreetCount.toString());
     
     // Return the generated greeting
     return greeting;
@@ -77,7 +80,10 @@ function createGreetMessage() {
     if (language) {
       // Return the total greetCount
       return totalGreetCount;
-    }   
+    } else {
+      // Return the stored greet count
+      return localStorage.getItem('greetCount');
+    }
   } 
   
   // Return an object with greet and getGreetCount methods
