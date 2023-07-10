@@ -25,6 +25,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        background-color: aquamarine;
     }
 }
   
@@ -75,19 +76,22 @@ button {
 .greet-count-section {
     margin-bottom: 10px;
     border: 1px solid #000;
+    background-color: #e76f51
 }  
 
 /* Define colors for sections */
-.greeting-section {
-    background-color: #4CAF50;
+/* .greeting-section {
+    background-color: #e76f51;
+    border: 1px solid #000;
 }
 
 .greet-count-section {
-    background-color: #4CAF50;
-}
+    background-color: #f4a261;
+    border: 1px solid #000;
+} */
 
 .display-section {
-    background-color: #4CAF50;
+    background-color: #e9c46a;
 }
 
 /* Page layout using floats */
@@ -96,4 +100,20 @@ button {
     display: flex; /* Add flexbox display */
     flex-direction: column; /* Arrange elements vertically */
     align-items: center; /* Center align elements horizontally */
+    background-color: #2a9d8f;
 }
+
+.h1{
+    display: flex;
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    height: 10vh; /* Adjust the height as needed */
+}
+
+.center-div {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+  
