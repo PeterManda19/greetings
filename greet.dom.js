@@ -40,6 +40,13 @@ buttonElement.addEventListener('click', function() {
   // Get the value from the text box
   const inputValue = inputElement.value;
 
+  // Check if the name is empty
+  if (inputValue.trim() === '') {
+    // Display an error message to the user
+    alert('Please enter your name!');
+    return; // Exit the function
+  }
+
   // Clear the value in the text box
   inputElement.value = "";
 
