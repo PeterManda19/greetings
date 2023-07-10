@@ -3,14 +3,32 @@ const greetingForm = createGreetMessage();
 // Select elements using document.querySelector
 const inputElement = document.querySelector('input[type="text"]');
 const buttonElement = document.querySelector('button');
+const resetButtonElement = document.getElementById('resetButton');
 const divElement = document.querySelector('div');
 const languageRadios = document.querySelectorAll('input[type="radio"]');
+const greetCountElements = document.querySelectorAll('.greet-count-widget span');
+const totalGreetCountElement = document.getElementById('totalGreetCountText');
+
+// Function to update greet count widget and store greet count in localStorage
+function updateGreetCount() {
+  // Update the greet count widget
+  for (const element of greetCountElements) {
+    const language = element.id.replace('CountText', '');
+    const count = greetingForm.getGreetCount(language);
+    element.textContent = `${element.textContent.split(':')[0]}: ${count}`;
+  }
+
+  // Update the total greet count
+  const totalGreetCount = greetingForm.getGreetCount();
+  const formattedGreetCount = totalGreetCount !== null ? totalGreetCount : 0;
+  totalGreetCountElement.textContent = `Total Greetings: ${formattedGreetCount}`;
+
+  // Store the greet count in localStorage
+  localStorage.setItem('greetCount', formattedGreetCount.toString());
+}
 
 // Check if greet count exists in localStorage
-const storedGreetCount = localStorage.getItem('greetCount');
-if (storedGreetCount) {
-  greetingForm.totalGreetCount = parseInt(storedGreetCount);
-}
+updateGreetCount();
 
 // Deselect all radio buttons initially
 for (const radio of languageRadios) {
@@ -49,19 +67,12 @@ buttonElement.addEventListener('click', function() {
   // Clear the input field for the next name to be entered
   inputElement.value = "";
 
-  // Update the greet count widget
-  const greetCountElements = document.querySelectorAll('.greet-count-widget span');
-  for (const element of greetCountElements) {
-    const language = element.id.replace('CountText', '');
-    const count = greetingForm.getGreetCount(language);
-    element.textContent = `${element.textContent.split(':')[0]}: ${count}`;
-  }
+  // Update the total greet count widget and store greet count in localStorage
+  updateGreetCount();
+});
 
-  // Update the total greet count
-  const totalGreetCountElement = document.getElementById('totalGreetCountText');
-  const totalGreetCount = greetingForm.getTotalGreetCount();
-  totalGreetCountElement.textContent = `Total Greetings: ${totalGreetCount}`;
-
-  // Store the greet count in localStorage
-  localStorage.setItem('greetCount', greetingForm.totalGreetCount.toString());
+// Event listener for reset button click
+resetButtonElement.addEventListener('click', function() {
+  greetingForm.resetGreetCount();
+  updateGreetCount();
 });

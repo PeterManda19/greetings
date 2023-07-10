@@ -31,6 +31,10 @@ function createGreetMessage() {
   // Initialize overall greetCount
   let totalGreetCount = 0;
 
+  // Declare global Object Literal variable to store greeted names
+  let namesGreeted = {};
+
+ 
   /**
    * Generates a greeting based on the provided name and language.
    * @param {string} name - The name to include in the greeting.
@@ -59,13 +63,20 @@ function createGreetMessage() {
   function greet(name, language) {
     // Generate the greeting using the generateGreeting function
     const greeting = generateGreeting(name, language);
-    
-    // Increment the overall greetCount
-    totalGreetCount++;
+
+    // Check if the person has been greeted before
+    if (!namesGreeted[name]) {
+      namesGreeted[name] = true;
+      // Increment the overall greetCount
+      totalGreetCount++;
+    }
 
     // Store the updated greetCount in localStorage
     localStorage.setItem('greetCount', totalGreetCount.toString());
-    
+
+    // Store the names greeted in localStorage
+    localStorage.setItem('namesGreeted', JSON.stringify(namesGreeted));
+
     // Return the generated greeting
     return greeting;
   }
@@ -79,16 +90,35 @@ function createGreetMessage() {
   function getGreetCount(language) {
     if (language) {
       // Return the total greetCount
-      return totalGreetCount;
+      return Object.keys(namesGreeted).length; //totalGreetCount;
     } else {
       // Return the stored greet count
-      return localStorage.getItem('greetCount');
+      return totalGreetCount;//localStorage.getItem('greetCount');
     }
   } 
+
+  function resetGreetCount() {
+    totalGreetCount = 0;
+    namesGreeted = {};
+    localStorage.setItem('greetCount', '0');
+    localStorage.removeItem('namesGreeted');
+  }
+
+  // Load greet count and names greeted from localStorage
+  const storedGreetCount = localStorage.getItem('greetCount');
+  if (storedGreetCount) {
+    totalGreetCount = parseInt(storedGreetCount);
+  }
+
+  let storedNamesGreeted = localStorage.getItem('namesGreeted');
+  if (storedNamesGreeted) {
+    namesGreeted = JSON.parse(storedNamesGreeted);
+  }
   
   // Return an object with greet and getGreetCount methods
   return {
     greet: greet,
-    getGreetCount: getGreetCount
+    getGreetCount: getGreetCount,
+    resetGreetCount: resetGreetCount
   };
 }
